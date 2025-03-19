@@ -11,7 +11,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Adiciona serviços ao contêiner
+        // Adiciona serviÃ§os ao contÃªiner
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddEntityFrameworkSqlServer()
@@ -26,11 +26,11 @@ public class Program
             });
 
         builder.Services.AddScoped<IAdzunaService, AdzunaService>(); // Manter como scoped
-        builder.Services.AddHostedService<AdzunaHostedService>(); // Adicionar como serviço hospedado
+        builder.Services.AddHostedService<AdzunaHostedService>(); // Adicionar como serviÃ§o hospedado
 
         var app = builder.Build();
 
-        // Configurar o pipeline de requisições HTTP
+        // Configurar o pipeline de requisiÃ§Ãµes HTTP
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Home/Error");
@@ -55,49 +55,3 @@ public class Program
 
 
 
-/*using Microsoft.EntityFrameworkCore;
-using ProjetoVagas.Data;
-
-namespace ProjetoVagas
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-
-            builder.Services.AddEntityFrameworkSqlServer()
-            .AddDbContext<VagaDbContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
-            );
-
-            builder.Services.AddScoped<AdzunaService>();
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.Run();
-        }
-    }
-}*/

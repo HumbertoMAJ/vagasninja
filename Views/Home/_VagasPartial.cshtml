@@ -1,0 +1,28 @@
+﻿@model List<Vaga>
+
+
+
+@foreach (var job in Model)
+{
+    <li class="list-group-item text-start p-4 border rounded meuhover shadow mb-2 bg-white rounded"
+        onclick="window.location.href='@Url.Action("Detalhes", "Home", new { id = job.Id })';">
+        <h4>@job.Title</h4>
+        <p class="mb-1">@job.Location.Display_name</p>
+        <p class="mb-1">@job.Company.Display_name</p>
+        <p>@job.Created?.ToString("dd/MM/yyyy")</p>
+        <p>
+            @if (job.Description.Length > 0)
+            {
+                @job.Description.Substring(0, (int)(job.Description.Length * 0.5))
+                @if (job.Description.Length > (int)(job.Description.Length * 0.5))
+                {
+                    <span>...</span> <!-- Indica que há mais conteúdo -->
+                }
+            }
+        </p>
+    </li>
+}
+
+
+
+

@@ -1,0 +1,21 @@
+﻿@model ProjetoVagas.Models.Vaga
+
+@{
+    ViewData["Title"] = "Detalhe da Vaga";
+}
+
+<div class="container pt-3">
+    <h2 class="display-6">@Model.Title</h2>
+
+    <p class="mb-1">@Model.Location.Display_name</p> <!-- Exibir a localização -->
+    <p class="mb-1">@Model.Company.Display_name</p>
+    <p class="mb-3">@Model.Created?.ToString("dd/MM/yyyy")</p>
+    <p class="mb-0 text-break text-justify text-responsive">Vaga de @Model.Title em(no) @Model.Location.Display_name</p>
+    <p class="text-break text-justify text-responsive">@Model.Description</p>
+    <p><strong class="font-weight-bold">Obs: Clique no botão "Quero me candidatar" para saber mais e aplicar para a vaga.</strong></p>
+
+    <div class="text-center pt-5 pb-5">
+        <a href="@Model.Redirect_url" class="btn btn-primary btn-lg active text-center" role="button" aria-pressed="true">Quero me candidatar</a>
+    </div>
+</div>
+

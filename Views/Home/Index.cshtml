@@ -1,0 +1,56 @@
+﻿@model List<Vaga>
+
+@{
+    ViewData["Title"] = "Todas as Vagas";
+}
+
+<div class="text-center pt-3">
+    <h1 class="display-3 pb-3">Vagas</h1>
+    <hr />
+     <!--  -->
+    <div class="d-flex justify-content-center">
+        <form method="get" action="@Url.Action("Pesquisar", "Home")" class="input-group rounded w-50 mt-3 mb-3">
+            <input type="search" name="query" class="form-control rounded" placeholder="Estado, cidade, vaga..." aria-label="Search" aria-describedby="search-addon" />
+
+            <button type="submit" class="btn btn-outline-secondary" id="search-addon">
+                <i class="fa fa-search"></i>
+            </button>
+           
+        </form>
+    </div>
+
+
+
+        <!-- -->
+    <div class="pt-3">
+        <ul class="list-group" id="vaga-list">
+            @await Html.PartialAsync("_VagasPartial", Model) <!-- Carrega as vagas iniciais -->
+        </ul>
+    </div>
+
+    <div id="loading" style="display:none;" class="text-center">
+        <p>Carregando mais vagas...</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let skip = 0 ; // Número de vagas já carregadas
+        const take = 10; // Número de vagas a serem carregadas por vez
+
+        async function carregarVagas() {
+            document.getElementById('loading').style.display = 'block';
+            const response = await fetch(`@Url.Action("CarregarVagas", "Home")?skip=${skip}&take=${take}`);
+            const vagasHtml = await response.text();
+            document.getElementById('vaga-list').insertAdjacentHTML('beforeend', vagasHtml);
+            skip += take;
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                carregarVagas();
+            }
+        });
+    </script>
+}

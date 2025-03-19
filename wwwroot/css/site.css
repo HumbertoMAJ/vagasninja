@@ -1,0 +1,41 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.meuhover:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+.text-responsive {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    .text-responsive {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 992px) {
+    .text-responsive {
+        font-size: 18px;
+    }
+}
+   
